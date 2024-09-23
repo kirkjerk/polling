@@ -64,7 +64,7 @@ const meta = {
                           entry.id
                         }',this.checked)">Required</label>`,
     display: (entry, type) =>
-      `<label><textarea  placeholder="Caption" ${
+      `<label>${entry.caption || entry.type}<br><textarea ${
         entry.required ? "required" : ""
       } name=${entry.id}></textarea>`,
     skeleton: { caption: "" },
