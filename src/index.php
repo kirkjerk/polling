@@ -1,0 +1,47 @@
+<!doctype html>
+<?php
+require "util.php";
+printTop();
+?>
+
+
+
+
+<?php
+if (empty($_GET)) {
+?>
+    <h1><?php echo $APPNAME; ?></h1>
+
+    <p>The quickest way to setup a poll.</p>
+
+    <form action="edit/" method="GET">
+
+        <button>make a new poll</button>
+    </form>
+
+<?php
+    die;
+} else {
+    $safefilename = getSafeFileNameFromParams();
+    $guts = loadGutsFromParams($safefilename, true);
+
+    if (!$guts) {
+        print "Can't find the poll $safefilename ok, sorry";
+        die;
+    }
+    print "<script>window.poll = " . json_encode($guts) . ";document.addEventListener('DOMContentLoaded', ()=>redrawPoll(true));</script>";
+}
+
+?>
+
+<form method="POST" action="record/">
+    <input type="hidden" name="_id" value="<?php echo $safefilename ?>">
+    <div id="poll"></div>
+    <br><br><button>Submit Response</button>
+    <form>
+        </div>
+
+
+        </body>
+
+        </html>
