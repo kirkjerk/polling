@@ -45,7 +45,9 @@ const meta = {
             <input placeholder="Caption" value="${escapeHtml(
               entry.caption
             )}" onInput="updateHeading('${entry.id}', this.value)">
-                        <br><label><input type='checkbox' onClick="toggleRequired('${
+                        <br><label><input type='checkbox' 
+                        ${entry.required ? "checked" : ""}
+                        onClick="toggleRequired('${
                           entry.id
                         }',this.checked)">Required</label>`,
     display: (entry, type) =>
@@ -60,7 +62,9 @@ const meta = {
             <input placeholder="Caption" value="${escapeHtml(
               entry.caption
             )}" onInput="updateHeading('${entry.id}', this.value)">
-                        <br><label><input type='checkbox' onClick="toggleRequired('${
+                        <br><label><input type='checkbox' 
+                        ${entry.required ? "checked" : ""}
+                        onClick="toggleRequired('${
                           entry.id
                         }',this.checked)">Required</label>`,
     display: (entry, type) =>
