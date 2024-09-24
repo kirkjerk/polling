@@ -12,7 +12,9 @@ if (empty($_GET)) {
 ?>
     <h1><?php echo $APPNAME; ?></h1>
 
-    <p>The quickest way to setup a poll.</p>
+    <p>The quickest way to setup an online poll or survey.</p>
+
+    <p>No account or signup needed! Just add the questions, pick a poll name, set an admin password, and get a shareable link. </p>
 
     <form action="edit/" method="GET">
 
@@ -38,10 +40,10 @@ if (empty($_GET)) {
     <input type="hidden" name="_id" value="<?php echo $safefilename ?>">
     <div id="poll"></div>
     <br><br><button>Submit Response</button>
-    <form>
-        </div>
+</form>
+</div>
 
 
-        </body>
+</body>
 
-        </html>
+</html>
