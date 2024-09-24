@@ -11,17 +11,18 @@ a {
 
 #poll {
   max-width: 600px;
-  padding: 4px;
-  display: inline-block;
+  padding:4px;
+  display:inline-block;
+  
 }
 #poll.preview {
-  border: 1px dashed #666;
+    border:1px dashed #666;
 }
 
 label.summary {
-  display: flex;
-  padding: 2px;
-  justify-content: space-between;
+    display: flex;
+    padding:2px;
+    justify-content:space-between;
 }
 
 #metaTable {
@@ -52,14 +53,14 @@ label.summary {
 }
 
 .radiogroup {
-  border: none;
-  padding: 0;
-  display: block;
+ border:none;   
+ padding: 0;
+ display: block;
 }
 .radiogroup label {
-  width: 100%;
-  display: block;
-  margin-bottom: 2px;
+    width:100%;  
+    display: block;
+    margin-bottom:2px;
 }
 
 .drag-handle {
@@ -157,7 +158,9 @@ label.summary {
   padding: 2px;
 }
 .colorSquare {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
+width:50px; height:50px; cursor:pointer;
+}
+
+footer {
+    margin-top:48px;   
 }

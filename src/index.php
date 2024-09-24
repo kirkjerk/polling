@@ -28,10 +28,17 @@ if (empty($_GET)) {
     $guts = loadGutsFromParams($safefilename, true);
 
     if (!$guts) {
-        print "Can't find the poll $safefilename ok, sorry";
+        print "Can't find the poll $safefilename, sorry";
         die;
     }
+    
+    
+    if($guts["closed"]) {
+        print "Poll is closed!";
+        die;
+    } 
     print "<script>window.poll = " . json_encode($guts) . ";document.addEventListener('DOMContentLoaded', ()=>redrawPoll(true));</script>";
+    
 }
 
 ?>
@@ -42,7 +49,7 @@ if (empty($_GET)) {
     <br><br><button>Submit Response</button>
 </form>
 </div>
-
+<?php printFooter() ?>
 
 </body>
 

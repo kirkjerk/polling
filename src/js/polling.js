@@ -46,7 +46,7 @@ const meta = {
               entry.caption
             )}" onInput="updateHeading('${entry.id}', this.value)">
                         <br><label><input type='checkbox' 
-                        ${entry.required ? "checked" : ""}
+                        ${entry.required ? 'checked' : ''}
                         onClick="toggleRequired('${
                           entry.id
                         }',this.checked)">Required</label>`,
@@ -63,7 +63,7 @@ const meta = {
               entry.caption
             )}" onInput="updateHeading('${entry.id}', this.value)">
                         <br><label><input type='checkbox' 
-                        ${entry.required ? "checked" : ""}
+                        ${entry.required ? 'checked' : ''}
                         onClick="toggleRequired('${
                           entry.id
                         }',this.checked)">Required</label>`,
@@ -85,15 +85,16 @@ const meta = {
       entry.id
     }')">add choice</button>`,
     display: (entry, type) =>
-      `<label>${entry.caption || entry.type}</label><br>${entry.options
+      `<fieldset class='radiogroup'><label>${entry.caption || entry.type}</label><br>${entry.options
         .map(
           (item) =>
-            `<label><input type='radio' name='${entry.id}' value='${item.id}'>${item.caption}</label><br>`
+            `<label class='${item.color}'><input type='radio' name='${entry.id}' value='${item.id}'>${item.caption}</label>`
         )
-        .join("")}`,
+        .join("")}
+        </fieldset>`,
     skeleton: {
       caption: "",
-      options: [{ id: "bbbbb", caption: "", color: "green" }],
+      options: [{ id: "bbbbb", caption: "", color: "white" }],
     },
     tableshow: (val, entry) => lookupRadioValue(val, entry),
     getColorClass: true,
@@ -189,7 +190,7 @@ function addRadioItem(id) {
   entry.options.push({
     id: generateRandomId(),
     caption: "",
-    color: "green",
+    color: "white",
   });
   redrawEditorAndPoll();
   redrawPoll();

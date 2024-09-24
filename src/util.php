@@ -146,6 +146,11 @@ function printTop()
         }
         return $guts;
     }
+    
+    function printFooter(){
+        global $APPROOT;
+        print "<footer><i>Make your own poll or survey at <a href='$APPROOT'>$APPROOT</a></i></footer>";
+    }
 
     function maskPasswordInGuts(&$guts)
     {

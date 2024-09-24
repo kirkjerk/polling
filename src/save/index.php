@@ -6,6 +6,8 @@ printTop();
 $name = grabPost("name");
 $password = encryptPassword(grabPost("password"));
 $guts = json_decode(grabPost("guts"), true);
+$adminview = grabPost("adminview");
+$closed = grabPost("closed");
 
 $filename = makeSafeFilename($name);
 
@@ -19,7 +21,12 @@ if (file_exists($path)) {
     $oldpassword = $data["password"];
     if ($password == $oldpassword) {
         $guts["password"] = $password;
+        
+        $guts["adminview"] = $adminview ? true: false;
+        $guts["closed"] = $closed ? true: false;
+                
         file_put_contents($path, json_encode($guts));
+
         print "<h2>Poll Updated!</h2>";
     } else {
         print "<h2>Can't Update</h2>";

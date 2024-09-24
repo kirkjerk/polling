@@ -22,7 +22,7 @@ if ($safefilename == "_") {
 
 $pollToLoad = $guts ? json_encode($guts) : '{entries:[{type:"heading",id:"aaaaaaaa",caption:"Your Title"}]}';
 
-echo <<<HTML
+?>
 <div class='splitzones'><div id='editorzone'>
 <h2>edit poll</h2>
 <div id='editor'></div>
@@ -30,13 +30,16 @@ echo <<<HTML
 <form action='../save/' method='POST'>
 <textarea style='display:none;' id='guts' name='guts'></textarea>
 <h2>save poll</h2>
-<label>poll name: <input name='name' value='$safefilename' required></label>
+<label>poll name: <input name='name' value='<?php echo $safefilename ?>' required></label>
 <br><label>admin password: <input name='password' type='password' required></label>
-<br><br><button>save poll</button>
+
+<br><label><input name="adminview" <?php echo !empty($guts["adminview"]) ? 'checked' : '' ?>  type="checkbox" >Only admin can see results</label>
+<br><label><input name="closed"  <?php echo !empty($guts["closed"]) ? 'checked' : '' ?>  type="checkbox"  >Poll is closed</label>
+<br><button>save poll</button>
+
 </form>
 
-HTML;
-?>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 

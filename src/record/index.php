@@ -13,6 +13,12 @@ $resultspath = $resultsdir . "/" . $filename;
 if (file_exists($path) && is_dir($resultspath)) {
     $meta = json_decode(file_get_contents($path), true);
 
+    if($meta["closed"]) {
+        print "Poll is closed!";
+        die;
+    }
+
+
     $entries = $meta["entries"];
 
     $results = array();

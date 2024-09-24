@@ -114,7 +114,7 @@
         const show = !wasOpen;
         const deleteElements = document.querySelectorAll('.delete');
         deleteElements.forEach(function(element, index) {
-            element.style.display = show ? 'block' : 'none'
+            element.style.display = show ? 'table-cell' : 'none'
             // You can perform any action on each element here, e.g., add event listeners, modify content, etc.
         });
     }
@@ -125,16 +125,15 @@ require "../util.php";
 printTop();
 
 
-?><form method="POST" action="../delete/"><?php
+?><?php
 
                                             $isadmin = false;
                                             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                 $filename = makeSafeFilename(getGet());
                                             } else {
-                                                $filename = $_POST["file"];
-                                                $rawpassword = $_POST["password"];
+                                                $filename = makeSafeFilename(grabPost("filename"));
+                                                $password = makeSafeFilename(grabPost("password"));
                                             }
-
 
                                             $path = $metadir . "/" . $filename . ".json";
 
@@ -143,6 +142,24 @@ printTop();
 
                                             if (file_exists($path) && is_dir($resultspath)) {
                                                 $metaraw = file_get_contents($path);
+                                                
+                                                $meta = json_decode($metaraw,true);
+                                                $adminview = $meta["adminview"];
+                                                
+                                                
+                                                if($adminview){
+                                                    if($meta["password"] == encryptPassword($password)){
+
+                                                    } else {
+                                                        print "<form method='POST'>\n";
+                                                        print "Results are Admin Only<br>";
+                                                        print "<input type='hidden' name='filename' value='$filename'>";
+                                                        print '<label>admin password:<input type="password" name="password"></label>';
+                                                        print '<button>See Results</button></form>';
+                                                        die;
+                                                    }
+                                                                                                    
+                                                }
 
                                                 $files = array_values(array_diff(scandir($resultspath), array('.', '..')));
 
@@ -151,7 +168,7 @@ printTop();
                                                 foreach ($files as $resultfile) {
                                                     $allresults[$resultfile] = json_decode(file_get_contents($resultspath . "/" . $resultfile), true);
                                                 }
-
+                                                
                                                 print "<script>\n";
                                                 print "const results = " . json_encode($allresults) . ";\n";
                                                 print "const poll=" . $metaraw . ";\n";
@@ -168,15 +185,19 @@ printTop();
     <br>
 
     <h1 id="polltitle"></h1>
-
+<form method="POST" action="../delete/">
     <table id="results"></table>
-    <details>
+   <br><br> <details>
         <summary onclick="toggleDeletes(this.parentElement.open)">admin mode</summary>
-
+        <br><br>
+        You can select entries for deletion with checkboxes above or <a href="../edit/?<?php echo $filename ?>">edit this poll</a><br><br>
         <input name="filename" type="hidden" value="<?php echo $filename ?>">
         <label>password:<input type="password" name="password"></label>
-        <button>remove entries</button>
+        <button>remove entries</button><br>
+        <br>
+        
         </div>
     </details>
 
 </form>
+<?php printFooter() ?>
