@@ -96,9 +96,8 @@
 
         if (entry.type == 'radio-buttons') {
             buf = entry.options.map(option => {
-
-                return `${option.caption}: ${tallies[entry.id][option.id] || "0"}`;
-            }).join("<br>");
+                return `<label class="summary ${option.color}"><span>${option.caption}:</span><span>${tallies[entry.id][option.id] || "0"}<span></label>`;
+            }).join("");
 
         }
         if (entry.type == 'check-box') {

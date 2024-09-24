@@ -22,20 +22,20 @@ if ($safefilename == "_") {
 
 $pollToLoad = $guts ? json_encode($guts) : '{entries:[{type:"heading",id:"aaaaaaaa",caption:"Your Title"}]}';
 
+echo <<<HTML
+<div class='splitzones'><div id='editorzone'>
+<h2>edit poll</h2>
+<div id='editor'></div>
+<b>add:</b><div id='addNews'></div>
+<form action='../save/' method='POST'>
+<textarea style='display:none;' id='guts' name='guts'></textarea>
+<h2>save poll</h2>
+<label>poll name: <input name='name' value='$safefilename' required></label>
+<br><label>admin password: <input name='password' type='password' required></label>
+<br><br><button>save poll</button>
+</form>
 
-print "<div class='splitzones'><div id='editorzone'>";
-print "<h2>edit poll</h2>";
-print "<div id='editor'></div>";
-
-
-print "<b>add:</b><div id='addNews'></div>";
-print "<form action='../save/' method='POST'>";
-print "<textarea  style='display:none;'  id='guts' name='guts'></textarea>"; //
-print "<h2>save poll</h2>";
-print "<label>poll name: <input name='name' value='$safefilename' required></label>";
-print "<br><label>admin password: <input name='password' type='password' required></label>";
-print "<br><br><button>save poll</button>";
-print "</form>";
+HTML;
 ?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -51,7 +51,7 @@ print "</form>";
 </div>
 <div id="previewzone">
     <h2>poll preview</h2>
-    <div id='poll'></div>
+    <div id='poll' class='preview'></div>
 </div>
 </div>
 <?
