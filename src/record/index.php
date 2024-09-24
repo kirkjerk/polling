@@ -47,4 +47,8 @@ $viewurl = "$APPROOT/view/?" . $filename;
 ?>
 Thanks for your response!
 <br><br>
-<?php if(! $meta["adminview"]) { ?> You can view results for poll at <a href="https://<?php echo $viewurl ?>"><?php echo $viewurl ?></a> <?php } ?><?php printFooter() ?>
+<?php if(! $meta["adminview"]) { ?> 
+You can view results for poll at <a href="https://<?php echo $viewurl ?>"><?php echo $viewurl ?></a> 
+<?php } ?>
+
+<?php printFooter() ?>
