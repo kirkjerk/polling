@@ -21,6 +21,8 @@ if (empty($_GET)) {
         <button>make a new poll</button>
     </form>
 
+    <br><br><i><a href="https://github.com/kirkjerk/polling">view on github</a></i>
+
 <?php
     die;
 } else {
@@ -31,14 +33,13 @@ if (empty($_GET)) {
         print "Can't find the poll $safefilename, sorry";
         die;
     }
-    
-    
-    if($guts["closed"]) {
+
+
+    if ($guts["closed"]) {
         print "Poll is closed!";
         die;
-    } 
+    }
     print "<script>window.poll = " . json_encode($guts) . ";document.addEventListener('DOMContentLoaded', ()=>redrawPoll(true));</script>";
-    
 }
 
 ?>
